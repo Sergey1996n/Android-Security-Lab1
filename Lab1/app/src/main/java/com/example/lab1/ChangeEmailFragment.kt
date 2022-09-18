@@ -11,21 +11,25 @@ import com.google.firebase.ktx.Firebase
 
 class ChangeEmailFragment : Fragment(R.layout.change_email) {
     private lateinit var btnChangeEmail: Button
-    private lateinit var textEmeil: EditText
+    private lateinit var textEmail: EditText
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        /** Инициализируем наши вьюшки */
+        val user = Firebase.auth.currentUser
+
         btnChangeEmail = view.findViewById(R.id.btn_change)
-        textEmeil = view.findViewById(R.id.editTextEmail)
+        textEmail = view.findViewById(R.id.editTextEmail)
+
+        if (user != null)
+            textEmail.setText(user.email)
 
         btnChangeEmail.setOnClickListener {
-            val user = Firebase.auth.currentUser
-            val emeil = textEmeil.text.toString()
+            val email = textEmail.text.toString()
 
-            if (user != null && emeil != "") {
-                user.updateEmail(emeil)
+            /* Да, надо проверять на валидацию, но я не хочу */
+            if (user != null && email != "") {
+                user.updateEmail(email)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             Toast.makeText( context, "У тебя получилось!!!", Toast.LENGTH_SHORT).show()

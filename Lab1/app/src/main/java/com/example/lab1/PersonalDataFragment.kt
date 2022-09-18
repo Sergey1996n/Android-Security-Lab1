@@ -1,6 +1,7 @@
 package com.example.lab1
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -34,7 +35,10 @@ class PersonalDataFragment : Fragment(R.layout.personal_data) {
         user?.let {
             nameText.text = user.displayName
             emeilText.text = user.email
-            image.setImageURI(user.photoUrl)
+            Log.wtf("Проверка Url", user.photoUrl.toString())
+            Log.wtf("------------------------- Проверка Имени -------------------------", it.displayName.toString())
+            /* Вот тут происходит ерунда */
+            // image.setImageURI(user.photoUrl)
             emailVerified.text = user.isEmailVerified.toString()
             uid.text = user.uid
         }

@@ -27,12 +27,22 @@ class ChangePersonalDataFragment: Fragment(R.layout.change_personal_data) {
         input = view.findViewById(R.id.editTextPersonName)
         button = view.findViewById(R.id.btn_change)
 
-        var name: String
-        var urlString: String = ""
+        val user = Firebase.auth.currentUser
+
+        var url: Uri? = Uri.parse("")
+        var name: String?
+        if (user != null){
+            name = user.displayName
+            url = user.photoUrl
+            if (name != null && url != null) {
+                input.setText(name)
+                //imageView.setImageURI(url)
+            }
+        }
 
         val getContent = registerForActivityResult(ActivityResultContracts.GetContent())  { uri: Uri? ->
-            imageView.setImageURI(uri)    // Handle the returned Uri
-            urlString = uri.toString()
+            imageView.setImageURI(uri)
+            url = uri
         }
 
         imageView.setOnClickListener {
@@ -40,16 +50,14 @@ class ChangePersonalDataFragment: Fragment(R.layout.change_personal_data) {
         }
 
         button.setOnClickListener {
-            val user = Firebase.auth.currentUser
             name = input.text.toString()
-            if (name != "" && urlString != "" && user != null) {
-
+            /* url просит инициализации */
+            if (name != "" && user != null && url != null) {
                 val profileUpdates = userProfileChangeRequest {
                     displayName = name
-                    photoUri = Uri.parse(urlString)
+                    photoUri = url
                 }
-
-                user!!.updateProfile(profileUpdates)
+                user.updateProfile(profileUpdates)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             Toast.makeText( context, "У тебя получилось!!!", Toast.LENGTH_SHORT).show()
@@ -58,6 +66,9 @@ class ChangePersonalDataFragment: Fragment(R.layout.change_personal_data) {
                             Toast.makeText( context, "Произошла ерунда.", Toast.LENGTH_SHORT).show()
                         }
                     }
+            }
+            else {
+                Toast.makeText( context, "Произошла ерунда.", Toast.LENGTH_SHORT).show()
             }
         }
     }
