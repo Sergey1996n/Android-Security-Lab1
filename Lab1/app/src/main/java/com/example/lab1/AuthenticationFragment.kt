@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -24,6 +25,7 @@ class AuthenticationFragment : Fragment(R.layout.authentication) {
 
     private lateinit var auth: FirebaseAuth
 
+    @SuppressLint("RestrictedApi")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -33,6 +35,7 @@ class AuthenticationFragment : Fragment(R.layout.authentication) {
         textPassword = view.findViewById(R.id.fieldPassword)
         // Initialize Firebase Auth
         auth = Firebase.auth
+
 
         btnSign.setOnClickListener {
             var email = textEmail.text.toString()

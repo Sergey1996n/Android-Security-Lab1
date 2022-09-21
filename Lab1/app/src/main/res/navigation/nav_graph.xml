@@ -18,9 +18,6 @@
             android:id="@+id/action_mainMenu_to_changeEmail"
             app:destination="@id/changeEmail" />
         <action
-            android:id="@+id/action_mainMenu_to_authenticationFragment"
-            app:destination="@id/authenticationFragment" />
-        <action
             android:id="@+id/action_mainMenu_to_personalData"
             app:destination="@id/personalData" />
         <action
@@ -36,10 +33,6 @@
             android:id="@+id/action_mainMenu_to_deleteAccountFragment"
             app:destination="@id/deleteAccountFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/authenticationFragment"
-        android:name="com.example.lab1.AuthenticationFragment"
-        android:label="AuthenticationFragment" />
     <fragment
         android:id="@+id/personalData"
         android:name="com.example.lab1.PersonalDataFragment"

@@ -1,20 +1,13 @@
 package com.example.lab1
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import com.firebase.ui.auth.AuthUI
 
 class SignOutFragment: Fragment(R.layout.sign_out) {
-    private lateinit var navController: NavController
-
-    private lateinit var auth: FirebaseAuth
-
     private lateinit var btnDelete: Button
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -23,11 +16,13 @@ class SignOutFragment: Fragment(R.layout.sign_out) {
         btnDelete = view.findViewById(R.id.btn_del_acc)
 
         btnDelete.setOnClickListener {
-            Firebase.auth.signOut()
-            if (Firebase.auth.currentUser == null)
-                Toast.makeText( context, "Он ушёл, но обещал вернуться", Toast.LENGTH_SHORT).show()
-            else
-                Toast.makeText( context, "Хм... А я и так тебя не знаю!!!", Toast.LENGTH_SHORT).show()
+            AuthUI.getInstance()
+                .signOut(requireContext())
+                .addOnCompleteListener {
+                    var intent = Intent(activity, MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                }
         }
     }
 }

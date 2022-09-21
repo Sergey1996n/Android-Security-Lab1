@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
@@ -27,17 +28,14 @@ class ChangePersonalDataFragment: Fragment(R.layout.change_personal_data) {
         input = view.findViewById(R.id.editTextPersonName)
         button = view.findViewById(R.id.btn_change)
 
-        val user = Firebase.auth.currentUser
+        val user = Firebase.auth.currentUser!!
 
-        var url: Uri? = Uri.parse("")
-        var name: String?
-        if (user != null){
-            name = user.displayName
-            url = user.photoUrl
-            if (name != null && url != null) {
-                input.setText(name)
-                //imageView.setImageURI(url)
-            }
+        var name = user.displayName
+        var url = user.photoUrl
+        if (name != null && url != null) {
+            input.setText(name)
+            Glide.with(this).load(url).into(imageView)
+            //imageView.setImageURI(url)
         }
 
         val getContent = registerForActivityResult(ActivityResultContracts.GetContent())  { uri: Uri? ->
@@ -52,7 +50,7 @@ class ChangePersonalDataFragment: Fragment(R.layout.change_personal_data) {
         button.setOnClickListener {
             name = input.text.toString()
             /* url просит инициализации */
-            if (name != "" && user != null && url != null) {
+            if (name != "" && url != null) {
                 val profileUpdates = userProfileChangeRequest {
                     displayName = name
                     photoUri = url

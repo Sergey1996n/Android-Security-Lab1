@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -18,29 +19,30 @@ class PersonalDataFragment : Fragment(R.layout.personal_data) {
 
     private lateinit var nameText: TextView
     private lateinit var image: ImageView
-    private lateinit var emeilText: TextView
-    private lateinit var emailVerified: TextView
-    private lateinit var uid: TextView
+    private lateinit var emailText: TextView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         nameText = view.findViewById(R.id.textName)
         image = view.findViewById(R.id.imageView)
-        emeilText = view.findViewById(R.id.textEmail)
-        emailVerified = view.findViewById(R.id.textVerificyEmail)
-        uid = view.findViewById(R.id.textId)
+        emailText = view.findViewById(R.id.textEmail)
 
-        val user = Firebase.auth.currentUser
+//        Log.wtf("AuthenticationFragment", Firebase.auth.currentUser?.zza().toString())
+//        Log.wtf("AuthenticationFragment", Firebase.auth.currentUser?.zzb()?.providerId.toString())
+//        Log.wtf("AuthenticationFragment", Firebase.auth.currentUser?.zze().toString())
+//        Log.wtf("AuthenticationFragment", Firebase.auth.currentUser?.zzf().toString())
+//        Log.wtf("AuthenticationFragment", Firebase.auth.currentUser?.zzy().toString())
+        Log.wtf("AuthenticationFragment", Firebase.auth.firebaseAuthSettings.toString())
+
+        val user = Firebase.auth.currentUser!!
+
         user?.let {
             nameText.text = user.displayName
-            emeilText.text = user.email
-            Log.wtf("Проверка Url", user.photoUrl.toString())
-            Log.wtf("------------------------- Проверка Имени -------------------------", it.displayName.toString())
-            /* Вот тут происходит ерунда */
-            // image.setImageURI(user.photoUrl)
-            emailVerified.text = user.isEmailVerified.toString()
-            uid.text = user.uid
+            emailText.text = user.email
+            /* Всё решилось другой библеотекой */
+            Glide.with(this).load(user.photoUrl).into(image)
+//            emailVerified.text = Firebase.auth.firebaseAuthSettings.
         }
     }
 }

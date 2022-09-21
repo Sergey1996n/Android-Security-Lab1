@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import androidx.appcompat.app.AppCompatActivity
+import com.firebase.ui.auth.AuthUI
 
 
 class MainMenuFragment : Fragment(R.layout.main_menu) {
@@ -32,10 +33,10 @@ class MainMenuFragment : Fragment(R.layout.main_menu) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         navController = Navigation.findNavController(view);
 
         /** Инициализируем наши вьюшки */
-        btnAuth = view.findViewById(R.id.btn_auth)
         btnData = view.findViewById(R.id.btn_data)
         btnSignOutFragment = view.findViewById(R.id.btn_sign_out_fragment)
         btnAvatarName = view.findViewById(R.id.btn_avatar_name)
@@ -46,10 +47,6 @@ class MainMenuFragment : Fragment(R.layout.main_menu) {
         // Initialize Firebase Auth
         auth = Firebase.auth
 
-        btnAuth.setOnClickListener {
-
-            navController.navigate(R.id.action_mainMenu_to_authenticationFragment)
-        }
         btnData.setOnClickListener {
             navController.navigate(R.id.action_mainMenu_to_personalData)
         }
