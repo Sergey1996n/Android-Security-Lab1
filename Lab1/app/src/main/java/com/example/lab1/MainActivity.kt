@@ -46,9 +46,6 @@ class MainActivity : AppCompatActivity() {
         if (requestCode == SIGN_IN_REQUEST_CODE) {
             val response = IdpResponse.fromResultIntent(data)
             if (resultCode == Activity.RESULT_OK) {
-//                    AuthUI.getInstance().auth.setTenantId(response?.providerType!!)
-//                Log.i(TAG, "------------------ ${response} --------------------")
-                Log.i(TAG, "------------------ ${response?.providerType!!} --------------------")
                 setContentView(R.layout.activity_main)
                 Log.i(TAG, "Successfully signed in user ${FirebaseAuth.getInstance().currentUser?.displayName}!")
             } else {

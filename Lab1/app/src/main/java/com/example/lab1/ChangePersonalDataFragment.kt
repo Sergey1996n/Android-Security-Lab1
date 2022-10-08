@@ -2,6 +2,7 @@ package com.example.lab1
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -30,13 +31,13 @@ class ChangePersonalDataFragment: Fragment(R.layout.change_personal_data) {
 
         val user = Firebase.auth.currentUser!!
 
-        var name = user.displayName
+        var name: String?
         var url = user.photoUrl
-        if (name != null && url != null) {
-            input.setText(name)
-            Glide.with(this).load(url).into(imageView)
-            //imageView.setImageURI(url)
+        if (url != null) {
+            Log.wtf("ChangePersonalDataFragment", url.toString())
+            Glide.with(this).load(user.photoUrl).into(imageView)
         }
+        input.setText(user.displayName)
 
         val getContent = registerForActivityResult(ActivityResultContracts.GetContent())  { uri: Uri? ->
             imageView.setImageURI(uri)
