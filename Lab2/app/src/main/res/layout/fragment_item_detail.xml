@@ -60,16 +60,82 @@
         app:layout_constraintTop_toBottomOf="@+id/item_price"
         tools:text="5" />
 
+    <TextView
+        android:id="@+id/item_provider_name_label"
+        style="@style/Widget.Inventory.TextView"
+        android:layout_width="wrap_content"
+        android:text="@string/provider_name"
+        app:layout_constraintBaseline_toBaselineOf="@+id/item_provider_name"
+        app:layout_constraintEnd_toStartOf="@+id/item_provider_name"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/item_provider_name"
+        style="@style/Widget.Inventory.TextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="@dimen/margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/item_provider_name_label"
+        app:layout_constraintTop_toBottomOf="@+id/item_count_label"
+        tools:text="OOO &quot;Apple&quot;" />
+
+    <TextView
+        android:id="@+id/item_provider_email_label"
+        style="@style/Widget.Inventory.TextView"
+        android:layout_width="wrap_content"
+        android:text="@string/provider_email"
+        app:layout_constraintBaseline_toBaselineOf="@+id/item_provider_email"
+        app:layout_constraintEnd_toStartOf="@+id/item_provider_email"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/item_provider_email"
+        style="@style/Widget.Inventory.TextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="@dimen/margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/item_provider_email_label"
+        app:layout_constraintTop_toBottomOf="@+id/item_provider_name_label"
+        tools:text="apple1997@gmail.com" />
+
+    <TextView
+        android:id="@+id/item_provider_phone_label"
+        style="@style/Widget.Inventory.TextView"
+        android:layout_width="wrap_content"
+        android:text="@string/provider_phone"
+        app:layout_constraintBaseline_toBaselineOf="@+id/item_provider_phone"
+        app:layout_constraintEnd_toStartOf="@+id/item_provider_phone"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/item_provider_phone"
+        style="@style/Widget.Inventory.TextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="@dimen/margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/item_provider_phone_label"
+        app:layout_constraintTop_toBottomOf="@+id/item_provider_email_label"
+        tools:text="+79991234567" />
+
     <Button
         android:id="@+id/sell_item"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin"
+        android:layout_marginTop="15dp"
         android:text="@string/sell"
         app:layout_constraintBottom_toTopOf="@+id/delete_item"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_count" />
+        app:layout_constraintTop_toBottomOf="@+id/item_provider_phone" />
 
     <Button
         android:id="@+id/delete_item"
@@ -81,6 +147,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sell_item" />
+
+    <Button
+        android:id="@+id/share_item"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/share"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/delete_item" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/edit_item"

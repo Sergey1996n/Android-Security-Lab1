@@ -30,6 +30,12 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <!-- Reference resource file where the app's shortcuts are defined -->
+            <!-- TODO STEP 4 - Declare sharing shortcuts in an xml resource-->
+<!--            <meta-data-->
+<!--            android:name="android.app.shortcuts"-->
+<!--            android:resource="@xml/shortcuts" />-->
+            <!-- TODO END STEP 4 -->
         </activity>
 
     </application>

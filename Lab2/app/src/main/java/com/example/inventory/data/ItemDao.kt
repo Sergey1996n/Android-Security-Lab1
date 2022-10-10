@@ -23,5 +23,5 @@ suspend fun delete(item: Item)
 fun getItem(id: Int): Flow<Item>
 
 @Query("SELECT * from item ORDER BY name ASC")
-fun getItem(): Flow<List<Item>>
+fun getItems(): Flow<List<Item>>
 }
