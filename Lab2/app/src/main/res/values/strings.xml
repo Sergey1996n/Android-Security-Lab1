@@ -26,6 +26,12 @@
     <string name="item_provider_name_req">Item Name Provider <font color='#FF0000'>*</font></string>
     <string name="item_provider_email_req">Item Email Provider <font color='#FF0000'>*</font></string>
     <string name="item_provider_phone_req">Item Phone Provider <font color='#FF0000'>*</font></string>
+    <string name="default_provider_name_req">Default Name Provider</string>
+    <string name="default_provider_email_req">Default Email Provider</string>
+    <string name="default_provider_phone_req">Default Phone Provider</string>
+    <string name="checkBox_default">Substitute default values in the form</string>
+    <string name="checkBox_hide">Hide sensitive data</string>
+    <string name="checkBox_forbid">Forbid sending data from the application</string>
     <string name="save_action">Save</string>
     <string name="item_detail_fragment_title">Item Details</string>
     <string name="add_fragment_title">Add Item</string>
@@ -40,6 +46,7 @@
     <string name="currency_symbol">₽</string>
     <string name="edit_item">Edit Item</string>
     <string name="add_new_item">Add new item</string>
+    <string name="setting">Setting</string>
     <string name="share">Share</string>
 
     <!-- SendMessageActivity -->
