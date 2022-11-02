@@ -16,6 +16,7 @@
 package com.example.inventory
 
 import android.os.Bundle
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -36,6 +37,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         setupActionBarWithNavController(this, navController)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.file_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
     /**
      * Handle navigation when the user chooses Up from the action bar.
      */

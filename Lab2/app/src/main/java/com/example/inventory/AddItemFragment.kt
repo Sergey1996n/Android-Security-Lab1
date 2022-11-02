@@ -15,12 +15,12 @@
  */
 package com.example.inventory
 
+import android.R
+import android.content.Context
 import android.content.Context.INPUT_METHOD_SERVICE
+import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -30,10 +30,11 @@ import androidx.navigation.fragment.navArgs
 import com.example.inventory.data.Item
 import com.example.inventory.databinding.FragmentAddItemBinding
 
+
 /**
  * Fragment to add or update an item in the Inventory database.
  */
-class AddItemFragment : Fragment() {
+class AddItemFragment : Fragment(R.layout.) {
 
     private val viewModel: InventoryViewModel by activityViewModels {
         InventoryViewModelFactory(
@@ -50,6 +51,10 @@ class AddItemFragment : Fragment() {
     private var _binding: FragmentAddItemBinding? = null
     private val binding get() = _binding!!
 
+    private val PREFS_FILE = "Setting"
+
+    private var settings: SharedPreferences? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -57,6 +62,24 @@ class AddItemFragment : Fragment() {
     ): View? {
         _binding = FragmentAddItemBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_cat1 -> {
+                textView.text = "Вы выбрали кота!"
+                return true
+            }
+            R.id.action_cat2 -> {
+                textView.text = "Вы выбрали кошку!"
+                return true
+            }
+            R.id.action_cat3 -> {
+                textView.text = "Вы выбрали котёнка!"
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     /* Метод валидации */
@@ -125,6 +148,14 @@ class AddItemFragment : Fragment() {
                 bind(item)
             }
         } else {
+            settings = requireContext().getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE)
+            if (settings!!.getBoolean("CheckBoxDefault",false)) {
+                binding.apply {
+                    itemProviderName.setText(settings!!.getString("ProviderName", ""))
+                    itemProviderEmail.setText(settings!!.getString("ProviderEmail", ""))
+                    itemProviderPhone.setText(settings!!.getString("ProviderPhone", ""))
+                }
+            }
             binding.saveAction.setOnClickListener {
                 addNewItem()
             }

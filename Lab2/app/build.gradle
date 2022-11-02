@@ -27,7 +27,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.inventory"
-        minSdkVersion 19
+        minSdkVersion 24
         targetSdkVersion 33
         versionCode 1
         versionName "1.0"
@@ -76,4 +76,14 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
 
     implementation "androidx.core:core-ktx:1.9.0"
+
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    implementation("androidx.security:security-crypto-ktx:1.1.0-alpha03")
+    // For Identity Credential APIs
+    implementation("androidx.security:security-identity-credential:1.0.0-alpha03")
+    // For App Authentication APIs
+    implementation("androidx.security:security-app-authenticator:1.0.0-alpha02")
+    // For App Authentication API testing
+    androidTestImplementation("androidx.security:security-app-authenticator:1.0.0-alpha01")
 }
