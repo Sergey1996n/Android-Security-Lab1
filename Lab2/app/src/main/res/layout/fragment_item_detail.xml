@@ -129,6 +129,28 @@
         app:layout_constraintTop_toBottomOf="@+id/item_provider_email_label"
         tools:text="+79991234567" />
 
+    <TextView
+        android:id="@+id/item_record_label"
+        style="@style/Widget.Inventory.TextView"
+        android:layout_width="wrap_content"
+        android:text="@string/record"
+        app:layout_constraintBaseline_toBaselineOf="@+id/item_record"
+        app:layout_constraintEnd_toStartOf="@+id/item_record"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/item_record"
+        style="@style/Widget.Inventory.TextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="@dimen/margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/item_record_label"
+        app:layout_constraintTop_toBottomOf="@+id/item_provider_phone_label"
+        tools:text="MANUAL" />
+
     <Button
         android:id="@+id/sell_item"
         android:layout_width="0dp"
@@ -138,7 +160,7 @@
         app:layout_constraintBottom_toTopOf="@+id/delete_item"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_provider_phone" />
+        app:layout_constraintTop_toBottomOf="@+id/item_record" />
 
     <Button
         android:id="@+id/delete_item"
