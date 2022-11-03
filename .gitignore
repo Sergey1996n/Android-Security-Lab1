@@ -1,0 +1,13 @@
+
+Lab1/app/build.gradle
+Lab1/app/google-services.json
+Lab1/app/src/main/java/com/example/lab1/AuthenticationFragment.kt
+Lab1/app/src/main/java/com/example/lab1/ChangeEmailFragment.kt
+Lab1/app/src/main/java/com/example/lab1/ChangePersonalDataFragment.kt
+Lab1/app/src/main/java/com/example/lab1/DeleteAccountFragment.kt
+Lab1/app/src/main/java/com/example/lab1/MainActivity.kt
+Lab1/app/src/main/java/com/example/lab1/MainMenuFragment.kt
+Lab1/app/src/main/java/com/example/lab1/PersonalDataFragment.kt
+Lab1/app/src/main/java/com/example/lab1/ui/main/MainFragment.kt
+Lab1/app/src/main/java/com/example/lab1/ui/main/MainViewModel.kt
+Lab1/app/src/main/res/layout/authentication.xml
