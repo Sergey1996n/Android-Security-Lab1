@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.example.inventory.data.Item
 import com.example.inventory.data.ItemDao
+import com.example.inventory.data.Record
 import kotlinx.coroutines.launch
 
 class InventoryViewModel(private val itemDao: ItemDao): ViewModel() {
@@ -26,6 +27,11 @@ class InventoryViewModel(private val itemDao: ItemDao): ViewModel() {
             providerEmail = itemProviderEmail,
             providerPhone = itemProviderPhone
         )
+    }
+
+    fun addNewItem(item: Item) {
+        item.record = Record.FILE
+        insertItem(item)
     }
 
     fun addNewItem(itemName: String, itemPrice: String, itemCount: String,

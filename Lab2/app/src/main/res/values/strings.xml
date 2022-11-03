@@ -20,6 +20,7 @@
     <string name="provider_name">Provider name:</string>
     <string name="provider_email">Provider Email:</string>
     <string name="provider_phone">Provider Phone:</string>
+    <string name="record">Data Source:</string>
     <string name="quantity_req">Quantity in Stock <font color='#FF0000'>*</font></string>
     <string name="item_name_req">Item Name <font color='#FF0000'>*</font></string>
     <string name="item_price_req">Item Price <font color='#FF0000'>*</font></string>
