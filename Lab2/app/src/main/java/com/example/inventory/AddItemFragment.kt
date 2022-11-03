@@ -15,10 +15,7 @@
  */
 package com.example.inventory
 
-import android.R
-import android.content.Context
 import android.content.Context.INPUT_METHOD_SERVICE
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.*
 import android.view.inputmethod.InputMethodManager
@@ -27,6 +24,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.MasterKey
 import com.example.inventory.data.Item
 import com.example.inventory.databinding.FragmentAddItemBinding
 
@@ -34,7 +33,7 @@ import com.example.inventory.databinding.FragmentAddItemBinding
 /**
  * Fragment to add or update an item in the Inventory database.
  */
-class AddItemFragment : Fragment(R.layout.) {
+class AddItemFragment : Fragment() {
 
     private val viewModel: InventoryViewModel by activityViewModels {
         InventoryViewModelFactory(
@@ -53,8 +52,6 @@ class AddItemFragment : Fragment(R.layout.) {
 
     private val PREFS_FILE = "Setting"
 
-    private var settings: SharedPreferences? = null
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -64,23 +61,6 @@ class AddItemFragment : Fragment(R.layout.) {
         return binding.root
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_cat1 -> {
-                textView.text = "Вы выбрали кота!"
-                return true
-            }
-            R.id.action_cat2 -> {
-                textView.text = "Вы выбрали кошку!"
-                return true
-            }
-            R.id.action_cat3 -> {
-                textView.text = "Вы выбрали котёнка!"
-                return true
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
 
     /* Метод валидации */
     private fun isEntryValid(): Boolean {
@@ -94,7 +74,7 @@ class AddItemFragment : Fragment(R.layout.) {
         )
     }
 
-    private fun addNewItem() {
+    fun addNewItem() {
         if (isEntryValid()) {
             viewModel.addNewItem(
                 binding.itemName.text.toString(),
@@ -148,12 +128,18 @@ class AddItemFragment : Fragment(R.layout.) {
                 bind(item)
             }
         } else {
-            settings = requireContext().getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE)
-            if (settings!!.getBoolean("CheckBoxDefault",false)) {
+            val sharedPreferences = EncryptedSharedPreferences.create(
+                requireContext(),
+                PREFS_FILE,
+                MasterKey.Builder(requireContext()).setKeyScheme(MasterKey.KeyScheme.AES256_GCM).build(),
+                EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+            )
+            if (sharedPreferences.getBoolean("CheckBoxDefault",false)) {
                 binding.apply {
-                    itemProviderName.setText(settings!!.getString("ProviderName", ""))
-                    itemProviderEmail.setText(settings!!.getString("ProviderEmail", ""))
-                    itemProviderPhone.setText(settings!!.getString("ProviderPhone", ""))
+                    itemProviderName.setText(sharedPreferences.getString("ProviderName", ""))
+                    itemProviderEmail.setText(sharedPreferences.getString("ProviderEmail", ""))
+                    itemProviderPhone.setText(sharedPreferences.getString("ProviderPhone", ""))
                 }
             }
             binding.saveAction.setOnClickListener {
