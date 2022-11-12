@@ -1,21 +1,14 @@
 package com.example.lab1
 
-import android.content.Context
 import android.os.Bundle
-import android.view.Gravity
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.test.core.app.ApplicationProvider
-import androidx.test.core.app.ApplicationProvider.getApplicationContext
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import androidx.appcompat.app.AppCompatActivity
-import com.firebase.ui.auth.AuthUI
 
 
 class MainMenuFragment : Fragment(R.layout.main_menu) {
@@ -33,10 +26,8 @@ class MainMenuFragment : Fragment(R.layout.main_menu) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         navController = Navigation.findNavController(view);
 
-        /** Инициализируем наши вьюшки */
         btnData = view.findViewById(R.id.btn_data)
         btnSignOutFragment = view.findViewById(R.id.btn_sign_out_fragment)
         btnAvatarName = view.findViewById(R.id.btn_avatar_name)
@@ -44,7 +35,6 @@ class MainMenuFragment : Fragment(R.layout.main_menu) {
         btnZone = view.findViewById(R.id.btn_zone)
         btnDelete = view.findViewById(R.id.btn_delete)
 
-        // Initialize Firebase Auth
         auth = Firebase.auth
 
         btnData.setOnClickListener {
@@ -60,11 +50,8 @@ class MainMenuFragment : Fragment(R.layout.main_menu) {
             navController.navigate(R.id.action_mainMenu_to_changeEmail)
         }
         btnZone.setOnClickListener {
-            val user = Firebase.auth.currentUser
-            if (user != null)
-                navController.navigate(R.id.action_mainMenu_to_zone)
-            else
-                Toast.makeText( context, "Ты не пройдёшь!!!", Toast.LENGTH_SHORT).show()
+            val user = Firebase.auth.currentUser!!
+            navController.navigate(R.id.action_mainMenu_to_zone)
         }
         btnDelete.setOnClickListener {
             navController.navigate(R.id.action_mainMenu_to_deleteAccountFragment)

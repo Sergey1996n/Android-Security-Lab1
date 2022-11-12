@@ -25,7 +25,7 @@ class DeleteAccountFragment: Fragment(R.layout.delete_account) {
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK + Intent.FLAG_ACTIVITY_CLEAR_TASK
                         startActivity(intent)
                     } else {
-                        Toast.makeText(context, "Я бы тебя удалил, но есть какие-то проблемы", Toast.LENGTH_SHORT)
+                        Toast.makeText(context, "Не удалось удалить.", Toast.LENGTH_SHORT)
                             .show()
                     }
                 }
